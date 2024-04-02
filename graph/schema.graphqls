@@ -1,0 +1,30 @@
+type Query {
+  unions: [Unions!]!
+}
+
+type CommonA {
+  test: Int!
+}
+
+type CommonB {
+  broken: Int!
+}
+
+type A {
+  common: CommonA!
+}
+
+type B {
+  common: CommonB!
+}
+
+union ABUnion = A | B
+
+type Unions {
+  abUnion: ABUnion!
+}
+
+extend schema @link(
+  url: "https://specs.apollo.dev/federation/v2.3",
+  import: ["@external", "@requires", "@provides", "@key", "@shareable", "@inaccessible", "@tag", "@override", "@composeDirective", "@extends"]
+)

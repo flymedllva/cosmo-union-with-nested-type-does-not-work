@@ -1,0 +1,6 @@
+version: 1
+subgraphs:
+  - name: test
+    routing_url: http://localhost:8080/query
+    introspection:
+      url: http://localhost:8080/query
