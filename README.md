@@ -1,6 +1,8 @@
 
 # How to reproduce
 
+example for https://github.com/wundergraph/cosmo/issues/679
+
 1.
 ```shell
 make run
@@ -14,7 +16,39 @@ wgc router compose -i graph.yaml -o config.json
 
 3. use config.json for run router
 
-4. view result
+4. run query
+
+```graphql
+query Test {
+    unions {
+        abUnion {
+            __typename
+            ... on A {
+                ...AFragment
+            }
+            ... on B {
+                ...BFragment
+            }
+        }
+    }
+}
+
+fragment AFragment on A {
+    __typename
+    common {
+        test
+    }
+}
+
+fragment BFragment on B {
+    __typename
+    common {
+        broken
+    }
+}
+```
+
+5. view result
 
 ```json
 {
